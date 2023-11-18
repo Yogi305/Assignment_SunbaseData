@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h2>Login</h2>
+    <form id="loginForm">
+        <label for="login_id">Email:</label>
+        <input type="text" id="login_id" name="login_id" required><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+
+        <button type="button" onclick="authenticate()">Login</button>
+    </form>
+
+    <!-- <script src="main.js"></script> -->
+    <script>
+async function authenticate() {
+    const url = 'https://qa2.sunbasedata.com/sunbase/portal/api/assignment_auth.jsp';
+
+const data = `{
+"login_id" : "test@sunbasedata.com",
+"password" :"Test@123"
+}`;
+
+const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+    },
+    body: data,
+    mode: 'no-cors',
+});
+
+const text = await response.json();
+
+console.log(text);
+}
+
+    </script>
+</body>
+</html>
+
